@@ -48,8 +48,6 @@ final class CheckPackagesOnPackagistReleaseWorker extends AbstractShopsysRelease
      */
     public function getDescription(Version $version): string
     {
-        $this->confirm('OMAG');
-
         return 'Check there are new versions all packages on packagist';
     }
 
