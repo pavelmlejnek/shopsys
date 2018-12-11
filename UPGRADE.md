@@ -78,7 +78,7 @@ There is a list of all the repositories maintained by monorepo, changes in log b
 - set `ENV COMPOSER_MEMORY_LIMIT=-1` in base stage in your `docker/php-fpm/Dockerfile` as composer consumes huge amount of memory during dependencies installation
     - see [#635 - allow composer unlimited memory](https://github.com/shopsys/shopsys/pull/635/files)
 
-## [From 7.0.0-beta2 to v7.0.0-beta3]
+## [From v7.0.0-beta2 to v7.0.0-beta3]
 ### [shopsys/framework]
 - [#595 automatic product price calculation has been removed along with pricing group coefficients](https://github.com/shopsys/shopsys/pull/595)
     - after running database migrations, all your products will be using manual pricing and will have set prices for all pricing groups in a fashion that will keep the final price as same as before
@@ -283,7 +283,7 @@ There is a list of all the repositories maintained by monorepo, changes in log b
         - on any other projects, where you do not have our phing targets available, run `vendor/bin/ecs check path/to/your/source-codes --fix`
     - if you do not want to use these standards, disable them in your custom configuration (`easy-coding-standard.yml` by default)
 
-## [From 7.0.0-beta1 to 7.0.0-beta2]
+## [From v7.0.0-beta1 to v7.0.0-beta2]
 ### [shopsys/project-base]
 - *(optional)* [#497 adding php.ini to image is now done only in dockerfiles](https://github.com/shopsys/shopsys/pull/497)
     - you should make the same changes in your repository for the php.ini configuration files to be added to your Docker images
@@ -319,7 +319,7 @@ There is a list of all the repositories maintained by monorepo, changes in log b
     - remove conflict `"codeception/stub"`, the conflicting version doesn't exist anymore and conflict is solved
     - change conflict of `"symfony/dependency-injection"` to `"3.4.15|3.4.16"`
 
-## [From 7.0.0-alpha6 to 7.0.0-beta1]
+## [From v7.0.0-alpha6 to v7.0.0-beta1]
 ### [shopsys/framework]
 - *(optional)* [#468 - Setting for docker on mac are now more optimized](https://github.com/shopsys/shopsys/pull/468)
     - if you use the Shopsys Framework with docker on the platform Mac, modify your
@@ -344,7 +344,7 @@ There is a list of all the repositories maintained by monorepo, changes in log b
     - remove all occurrences of `img-demo` in `build-dev.xml`
     - remove all occurrences of `img-demo` from your build/deploy process
 
-## [From 7.0.0-alpha5 to 7.0.0-alpha6]
+## [From v7.0.0-alpha5 to v7.0.0-alpha6]
 ### [shopsys/framework]
 - check for usages of `TransportEditFormType` - it was removed and all it's attributes were moved to `TransportFormType` so use this form instead
 - check for usages of `PaymentEditFormType` - it was removed and all it's attributes were moved to `PaymentFormType` so use this form instead
@@ -420,7 +420,7 @@ There is a list of all the repositories maintained by monorepo, changes in log b
     - `build.dockerfile` should be `docker/Dockerfile`
     - execute `docker-compose up -d --build`, microservices should be up and running
 
-## [From 7.0.0-alpha4 to 7.0.0-alpha5]
+## [From v7.0.0-alpha4 to v7.0.0-alpha5]
 
 ### [shopsys/framework]
 - for [product search via Elasticsearch](/docs/introduction/product-search-via-elasticsearch.md), you'll have to:
@@ -520,7 +520,7 @@ if you are using docker infrastructure you can follow steps written below.
         - '@ShopsysFramework/Admin/Form/productCalculatedPrices.html.twig'
     ```
 
-## [From 7.0.0-alpha3 to 7.0.0-alpha4]
+## [From v7.0.0-alpha3 to v7.0.0-alpha4]
 
 ### [shopsys/framework]
 - move creation of data objects into factories
@@ -541,7 +541,7 @@ if you are using docker infrastructure you can follow steps written below.
 - move creation of data objects into factories
 - already existing data object factories changed their signatures
 
-## [From 7.0.0-alpha2 to 7.0.0-alpha3]
+## [From v7.0.0-alpha2 to v7.0.0-alpha3]
 
 ### [shopsys/framework]
 - classes in src/Components were revised, refactored and some of them were moved to model,
@@ -609,8 +609,8 @@ parameters:
 - Twig has been updated to version 2.4.8
     - https://symfony.com/blog/twig-how-to-upgrade-to-2-0-deprecation-notices-to-the-rescue
 
-## [From 7.0.0-alpha1 to 7.0.0-alpha2]
-### [shopsys/project-base]  
+## [From v7.0.0-alpha1 to v7.0.0-alpha2]
+### [shopsys/project-base]
 - check changes in the `docker-compose.yml` template you used, there were a couple of important changes you need to replicate
     - easiest way is to overwrite your `docker-compose.yml` with by the appropriate template
 - on *nix systems, fill your UID and GID (you can run `id -u` and `id -g` to obtain them) into Docker build arguments `www_data_uid` and `www_data_gid` and rebuild your image via `docker-compose up --build`
@@ -622,92 +622,92 @@ parameters:
 
 ## Before monorepo
 Before we managed to implement monorepo for our packages, we had slightly different versions for each of our package,
-that's why is this section formatted differently.  
+that's why is this section formatted differently.
 
 ### [shopsys/product-feed-heureka]
-#### From 0.4.2 to 0.5.0
+#### From v0.4.2 to v0.5.0
 - requires possibility of extending the CRUD of categories via `shopsys.crud_extension` of type `category`
 - requires update of [shopsys/plugin-interface](https://github.com/shopsys/plugin-interface) to version `^0.3.0`
 and [shopsys/product-feed-interface](https://github.com/shopsys/product-feed-interface) to `^0.5.0`
 
-#### From 0.4.0 to 0.4.1
+#### From v0.4.0 to v0.4.1
 - See [Upgrading of shopsys/product-feed-interface](https://github.com/shopsys/product-feed-interface/blob/master/UPGRADE.md#from-030-to-040)
 
-#### From 0.2.0 to 0.4.0
+#### From v0.2.0 to v0.4.0
 - See [Upgrading of shopsys/product-feed-interface](https://github.com/shopsys/product-feed-interface/blob/master/UPGRADE.md#from-020-to-030)
 
-#### From 0.1.0 to 0.2.0
+#### From v0.1.0 to v0.2.0
 - See [Upgrading of shopsys/product-feed-interface](https://github.com/shopsys/product-feed-interface/blob/master/UPGRADE.md#from-010-to-020)
 
 ### [shopsys/product-feed-zbozi]
-#### From 0.4.0 to 0.4.1
+#### From v0.4.0 to v0.4.1
 - See [Upgrading of shopsys/product-feed-interface](https://github.com/shopsys/product-feed-interface/blob/master/UPGRADE.md#from-030-to-040)
 
-#### From 0.3.0 to 0.4.0
+#### From v0.3.0 to v0.4.0
 - See [Upgrading of shopsys/product-feed-interface](https://github.com/shopsys/product-feed-interface/blob/master/UPGRADE.md#from-020-to-030)
 
-#### From 0.1.0 to 0.2.0
+#### From v0.1.0 to v0.2.0
 - See [Upgrading of shopsys/product-feed-interface](https://github.com/shopsys/product-feed-interface/blob/master/UPGRADE.md#from-010-to-020)
 
 ### [shopsys/product-feed-heureka-delivery]
-#### From 0.2.0 to 0.2.1
+#### From v0.2.0 to v0.2.1
 - See [Upgrading of shopsys/product-feed-interface](https://github.com/shopsys/product-feed-interface/blob/master/UPGRADE.md#from-030-to-040)
 
-#### From 0.1.1 to 0.2.0
+#### From v0.1.1 to v0.2.0
 - See [Upgrading of shopsys/product-feed-interface](https://github.com/shopsys/product-feed-interface/blob/master/UPGRADE.md#from-010-to-030)
 
 ### [shopsys/product-feed-interface]
-#### From 0.4.0 to 0.5.0
+#### From v0.4.0 to v0.5.0
 - implement method `getMainCategoryId()` in your implementations of `StandardFeedItemInterface`.
 
-#### From 0.3.0 to 0.4.0
+#### From v0.3.0 to v0.4.0
 - implement method `isSellingDenied()` for all implementations of `StandardFeedItemInterface`.
 - you have to take care of filtering of non-sellable items in implementations of `FeedConfigInterface::processItems()`
 in your product feed plugin because the instances of `StandardFeedItemInterface` passed as an argument can be non-sellable now.
 - implement method `getAdditionalInformation()` in your implementations of `FeedConfigInterface`.
 - implement method `getCurrencyCode()` in your implementations of `StandardFeedItemInterface`.
 
-#### From 0.2.0 to 0.3.0
+#### From v0.2.0 to v0.3.0
 - remove method `getFeedItemRepository()` from all implementations and usages of `FeedConfigInterface`.
 
-#### From 0.1.0 to 0.2.0
+#### From v0.1.0 to v0.2.0
 - Rename all implementations and usages of `FeedItemInterface::getItemId()` to `getId()`.
 - Rename all implementations and usages of `FeedItemCustomValuesProviderInterface` to `HeurekaCategoryNameProviderInterface`.
 - If you are using custom values in your implementation, you need to implement interfaces from package [shopsys/plugin-interface](https://github.com/shopsys/plugin-interface) (see [how to work with data storage interface](https://github.com/shopsys/plugin-interface#data-storage)).
 
 ### [shopsys/plugin-interface]
-#### From 0.2.0 to 0.3.0
+#### From v0.2.0 to v0.3.0
 - all implementations of `DataStorageInterface` now must have implemented method `getAll()` for getting all saved data indexed by keys
 
 ### [shopsys/project-base]
-#### From 2.0.0-beta.21.0 to 7.0.0-alpha1  
-- manual upgrade from this version will be very hard because of BC-breaking extraction of [shopsys/framework](https://github.com/shopsys/framework)  
-    - at this moment the core is not easily extensible by your individual functionality  
-    - before upgrading to the new architecture you should upgrade to Dockerized architecture of `2.0.0-beta.21.0`  
-    - the upgrade will require overriding or extending of all classes now located in  
-    [shopsys/framework](https://github.com/shopsys/framework) that you customized in your forked repository  
-    - it would be wise to wait with the upgrade until the newly build architecture has matured  
+#### From v2.0.0-beta.21.0 to v7.0.0-alpha1
+- manual upgrade from this version will be very hard because of BC-breaking extraction of [shopsys/framework](https://github.com/shopsys/framework)
+    - at this moment the core is not easily extensible by your individual functionality
+    - before upgrading to the new architecture you should upgrade to Dockerized architecture of `2.0.0-beta.21.0`
+    - the upgrade will require overriding or extending of all classes now located in
+    [shopsys/framework](https://github.com/shopsys/framework) that you customized in your forked repository
+    - it would be wise to wait with the upgrade until the newly build architecture has matured
 - update custom tests to be compatible with phpunit 7. For further details visit phpunit release announcements [phpunit 6](https://phpunit.de/announcements/phpunit-6.html) and [phpunit 7](https://phpunit.de/announcements/phpunit-7.html)
 
-#### From 2.0.0-beta.20.0 to 2.0.0-beta.21.0  
+#### From v2.0.0-beta.20.0 to v2.0.0-beta.21.0
 - do not longer use Phing targets standards-ci and standards-ci-diff, use standards and standards-diff instead
 
-#### From 2.0.0-beta.17.0 to 2.0.0-beta.18.0
+#### From v2.0.0-beta.17.0 to v2.0.0-beta.18.0
 - use `SimpleCronModuleInterface` and `IteratedCronModuleInterface` from their new namespace `Shopsys\Plugin\Cron` (instead of `Shopsys\FrameworkBundle\Component\Cron`)
 
-#### From 2.0.0-beta.16.0 to 2.0.0-beta.17.0  
-- coding standards for JS files were added, make sure `phing eslint-check` passes  
-    (you can run `phing eslint-fix` to fix some violations automatically)  
+#### From v2.0.0-beta.16.0 to v2.0.0-beta.17.0
+- coding standards for JS files were added, make sure `phing eslint-check` passes
+    (you can run `phing eslint-fix` to fix some violations automatically)
 
-#### From 2.0.0-beta.15.0 to 2.0.0-beta.16.0  
-- all implementations of `Shopsys\ProductFeed\FeedItemRepositoryInterface` must implement interface `Shopsys\FrameworkBundle\Model\Feed\FeedItemRepositoryInterface` instead  
-    - the interface was moved from [shopsys/product-feed-interface](https://github.com/shopsys/product-feed-interface/) to core  
-- parameter `email_for_error_reporting` was renamed to `error_reporting_email_to` in `app/config/parameter.yml.dist`,  
-    you will be prompted to fill it out again during `composer install`  
+#### From v2.0.0-beta.15.0 to v2.0.0-beta.16.0
+- all implementations of `Shopsys\ProductFeed\FeedItemRepositoryInterface` must implement interface `Shopsys\FrameworkBundle\Model\Feed\FeedItemRepositoryInterface` instead
+    - the interface was moved from [shopsys/product-feed-interface](https://github.com/shopsys/product-feed-interface/) to core
+- parameter `email_for_error_reporting` was renamed to `error_reporting_email_to` in `app/config/parameter.yml.dist`,
+    you will be prompted to fill it out again during `composer install`
 - all implementations of `StandardFeedItemInterface` must implement methods `isSellingDenied()` and `getCurrencyCode()`, see [product-feed-interface](https://github.com/shopsys/product-feed-interface/blob/master/UPGRADE.md#from-030-to-040)
 
 ### [shopsys/coding-standards]
-#### From 3.x to 4.0
+#### From v3.x to v4.0
 - In order to run all checks, there is new unified way - execute `php vendor/bin/ecs check /path/to/project --config=vendor/shopsys/coding-standards/easy-coding-standard.neon`
     - If you are overriding rules configuration in your project, it is necessary to do so in neon configuration file, see [example bellow](./example-of-custom-configuration-file).
     - See [EasyCodingStandard docs](https://github.com/Symplify/EasyCodingStandard#usage) for more information
@@ -735,14 +735,14 @@ parameters:
 ```
 [From v7.0.0-beta4 to Unreleased]: https://github.com/shopsys/shopsys/compare/v7.0.0-beta4...HEAD
 [From v7.0.0-beta3 to v7.0.0-beta4]: https://github.com/shopsys/shopsys/compare/v7.0.0-beta3...v7.0.0-beta4
-[From 7.0.0-beta2 to v7.0.0-beta3]: https://github.com/shopsys/shopsys/compare/v7.0.0-beta2...v7.0.0-beta3
-[From 7.0.0-beta1 to 7.0.0-beta2]: https://github.com/shopsys/shopsys/compare/v7.0.0-beta1...v7.0.0-beta2
-[From 7.0.0-alpha6 to 7.0.0-beta1]: https://github.com/shopsys/shopsys/compare/v7.0.0-alpha6...v7.0.0-beta1
-[From 7.0.0-alpha5 to 7.0.0-alpha6]: https://github.com/shopsys/shopsys/compare/v7.0.0-alpha5...v7.0.0-alpha6
-[From 7.0.0-alpha4 to 7.0.0-alpha5]: https://github.com/shopsys/shopsys/compare/v7.0.0-alpha4...v7.0.0-alpha5
-[From 7.0.0-alpha3 to 7.0.0-alpha4]: https://github.com/shopsys/shopsys/compare/v7.0.0-alpha3...v7.0.0-alpha4
-[From 7.0.0-alpha2 to 7.0.0-alpha3]: https://github.com/shopsys/shopsys/compare/v7.0.0-alpha2...v7.0.0-alpha3
-[From 7.0.0-alpha1 to 7.0.0-alpha2]: https://github.com/shopsys/shopsys/compare/v7.0.0-alpha1...v7.0.0-alpha2
+[From v7.0.0-beta2 to v7.0.0-beta3]: https://github.com/shopsys/shopsys/compare/v7.0.0-beta2...v7.0.0-beta3
+[From v7.0.0-beta1 to v7.0.0-beta2]: https://github.com/shopsys/shopsys/compare/v7.0.0-beta1...v7.0.0-beta2
+[From v7.0.0-alpha6 to v7.0.0-beta1]: https://github.com/shopsys/shopsys/compare/v7.0.0-alpha6...v7.0.0-beta1
+[From v7.0.0-alpha5 to v7.0.0-alpha6]: https://github.com/shopsys/shopsys/compare/v7.0.0-alpha5...v7.0.0-alpha6
+[From v7.0.0-alpha4 to v7.0.0-alpha5]: https://github.com/shopsys/shopsys/compare/v7.0.0-alpha4...v7.0.0-alpha5
+[From v7.0.0-alpha3 to v7.0.0-alpha4]: https://github.com/shopsys/shopsys/compare/v7.0.0-alpha3...v7.0.0-alpha4
+[From v7.0.0-alpha2 to v7.0.0-alpha3]: https://github.com/shopsys/shopsys/compare/v7.0.0-alpha2...v7.0.0-alpha3
+[From v7.0.0-alpha1 to v7.0.0-alpha2]: https://github.com/shopsys/shopsys/compare/v7.0.0-alpha1...v7.0.0-alpha2
 
 [shopsys/shopsys]: https://github.com/shopsys/shopsys
 [shopsys/project-base]: https://github.com/shopsys/project-base
