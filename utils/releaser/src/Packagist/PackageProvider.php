@@ -16,11 +16,6 @@ final class PackageProvider
     private const PACKAGE_NAMES = 'packageNames';
 
     /**
-     * @var string[][]
-     */
-    private $packagesByOrganization = [];
-
-    /**
      * @param string $organization
      * @param string[] $excludePackages
      * @return string[]
