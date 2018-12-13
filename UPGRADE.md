@@ -68,10 +68,14 @@ There is a list of all the repositories maintained by monorepo, changes in log b
     - to display svg icons collection correctly in grunt generated document for all browsers please add `src/Shopsys/ShopBundle/Resources/views/Grunt/htmlDocumentTemplate.html` file and update `src/Shopsys/ShopBundle/Resources/views/Grunt/gruntfile.js.twig` based on changes in this pull request
 - [#674 - Dockerignore needs to accept nginx configuration for production on docker](https://github.com/shopsys/shopsys/pull/674)
     - add `!docker/nginx` line into `.dockerignore` file so `docker/nginx` directory is not excluded during building `php-fpm` image
+- [#679 webserver container starts after php-fpm is started](https://github.com/shopsys/shopsys/pull/679)
+    - add `depends_on: php-fpm` into `webserver` service of your `docker-compose.yml` file so webserver will not fail on error `host not found in upstream php-fpm:9000`
 
 ### [shopsys/shopsys]
 - [#651 It's possible to add index prefix to elastic search](https://github.com/shopsys/shopsys/pull/651)
     - either rebuild your Docker images with `docker-compose up -d --build` or add `ELASTIC_SEARCH_INDEX_PREFIX=''` to your `.env` files in the microservice root directories, otherwise all requests to the microservices will throw `EnvNotFoundException` 
+- [#679 webserver container starts after php-fpm is started](https://github.com/shopsys/shopsys/pull/679)
+    - add `depends_on: php-fpm` into `webserver` service of your `docker-compose.yml` file so webserver will not fail on error `host not found in upstream php-fpm:9000`
 
 ## [From v7.0.0-beta3 to v7.0.0-beta4]
 ### [shopsys/project-base]
