@@ -57,6 +57,9 @@ There is a list of all the repositories maintained by monorepo, changes in log b
     - the separators are rendered automatically since [PR #619](https://github.com/shopsys/shopsys/pull/619) was merged and the option hasn't been used anymore
 - [#627 model service layer removal](https://github.com/shopsys/shopsys/pull/627)
     - please read upgrade instructions in [separate article](docs/upgrade/services_removal.md)
+- [#690 refactored checking duplicate e-mail to User constructor](https://github.com/shopsys/shopsys/pull/690)
+    - provide new parameters for creating `User` entity `(UserData $userData, BillingAddress $billingAddress, ?DeliveryAddress $deliveryAddress, ?self $userByEmail)`
+    - doesn't affect you if you create `User` only by factory
 
 ### [shopsys/project-base]
 - *(optional)* [#596 Trusted proxies are now configurable in parameters.yml file](https://github.com/shopsys/shopsys/pull/596)
@@ -68,6 +71,9 @@ There is a list of all the repositories maintained by monorepo, changes in log b
     - to display svg icons collection correctly in grunt generated document for all browsers please add `src/Shopsys/ShopBundle/Resources/views/Grunt/htmlDocumentTemplate.html` file and update `src/Shopsys/ShopBundle/Resources/views/Grunt/gruntfile.js.twig` based on changes in this pull request
 - [#674 - Dockerignore needs to accept nginx configuration for production on docker](https://github.com/shopsys/shopsys/pull/674)
     - add `!docker/nginx` line into `.dockerignore` file so `docker/nginx` directory is not excluded during building `php-fpm` image
+- [#690 refactored checking duplicate e-mail to User constructor](https://github.com/shopsys/shopsys/pull/690)
+    - change your `User` entity constructor to `__construct(UserData $userData, BillingAddress $billingAddress, ?DeliveryAddress $deliveryAddress, ?self $userByEmail)`
+    - doesn't affect you if you don't extend `User` entity
 
 ### [shopsys/shopsys]
 - [#651 It's possible to add index prefix to elastic search](https://github.com/shopsys/shopsys/pull/651)
