@@ -2,7 +2,12 @@ FROM php:7.2-fpm-stretch as base
 
 ARG project_root=.
 
-# install git for computing diffs
+# install required tools
+# git for computing diffs
+# wget for installation of other tools
+# gnupg and g++ for gd extension
+# libicu-dev for intl extension
+# libpg-dev for connection to postgres database
 RUN apt-get update && apt-get install -y git wget gnupg g++ libicu-dev libpq-dev
 
 # Install NodeJS
@@ -11,7 +16,11 @@ RUN apt-get install -y nodejs
 
 # install Composer
 COPY ${project_root}/docker/php-fpm/docker-install-composer /usr/local/bin/docker-install-composer
-RUN chmod +x /usr/local/bin/docker-install-composer && docker-install-composer
+COPY ${project_root}/docker/php-fpm/docker-php-entrypoint /usr/local/bin/docker-php-entrypoint
+
+RUN chmod +x /usr/local/bin/docker-install-composer && \
+    chmod +x /usr/local/bin/docker-php-entrypoint && \
+    docker-install-composer
 
 # libpng-dev needed by "gd" extension
 # libzip-dev needed by "zip" extension
@@ -21,7 +30,8 @@ RUN apt-get install -y \
     libzip-dev \
     autoconf
 
-# install necessary PHP extensions requested by Composer
+# install necessary tools for running application
+# Redis extentions, grunt for grunt watch utility, postgresql client for dumping databases
 RUN docker-php-ext-install \
     bcmath \
     gd \
@@ -29,16 +39,11 @@ RUN docker-php-ext-install \
     opcache \
     pgsql \
     pdo_pgsql \
-    zip
-
-# install Redis using pecl.
-RUN pecl install redis-4.0.2 && docker-php-ext-enable redis
-
-# install grunt-cli using npm to be able to run grunt watch
-RUN npm install -g grunt-cli
-
-# Install postgresql using wget
-RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
+    zip && \
+    pecl install redis-4.0.2 && \
+    docker-php-ext-enable redis && \
+    npm install -g grunt-cli && \
+    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
     sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -sc)-pgdg main" > /etc/apt/sources.list.d/PostgreSQL.list' && \
     apt-get update && apt-get install -y postgresql-10 postgresql-client-10
 
@@ -50,16 +55,15 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-# overwrite the original entry-point from the PHP Docker image with our own
-COPY ${project_root}/docker/php-fpm/docker-php-entrypoint /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-php-entrypoint
-
 # copy php.ini configuration
 COPY ${project_root}/docker/php-fpm/php-ini-overrides.ini /usr/local/etc/php/php.ini
 
+# set www-data user his home directory
 # the user "www-data" is used when running the image, and therefore should own the workdir
-RUN usermod -m -d /home/www-data www-data
-RUN chown www-data:www-data /home/www-data /var/www/html
+RUN usermod -m -d /home/www-data www-data && \
+    chown www-data:www-data /home/www-data /var/www/html
+
+# Switch to user
 USER www-data
 
 # hirak/prestissimo makes the install of Composer dependencies faster by parallel downloading
