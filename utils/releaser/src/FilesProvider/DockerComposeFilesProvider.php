@@ -15,7 +15,7 @@ final class DockerComposeFilesProvider
     {
         $finder = Finder::create()
             ->in(getcwd())
-            ->exclude('vendor')
+            ->exclude(['vendor', 'project-base/var/postgres-data', 'utils/releaser'])
             ->files()
             ->name('#docker-compose([\w-]+)?\.yml\.dist$#');
 
