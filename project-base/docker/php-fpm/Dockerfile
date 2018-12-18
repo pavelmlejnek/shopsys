@@ -6,9 +6,7 @@ ARG project_root=.
 # git for computing diffs
 # wget for installation of other tools
 # gnupg and g++ for gd extension
-# libicu-dev for intl extension
-# libpg-dev for connection to postgres database
-RUN apt-get update && apt-get install -y git wget gnupg g++ libicu-dev libpq-dev
+RUN apt-get update && apt-get install -y git wget gnupg g++
 
 # Install NodeJS
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
@@ -24,10 +22,14 @@ RUN chmod +x /usr/local/bin/docker-install-composer && \
 
 # libpng-dev needed by "gd" extension
 # libzip-dev needed by "zip" extension
+# libicu-dev for intl extension
+# libpg-dev for connection to postgres database
 # autoconf needed by "redis" extension
 RUN apt-get install -y \
     libpng-dev \
     libzip-dev \
+    libicu-dev \
+    libpq-dev \
     autoconf
 
 # install necessary tools for running application
@@ -61,7 +63,7 @@ COPY ${project_root}/docker/php-fpm/php-ini-overrides.ini /usr/local/etc/php/php
 # set www-data user his home directory
 # the user "www-data" is used when running the image, and therefore should own the workdir
 RUN usermod -m -d /home/www-data www-data && \
-    chown www-data:www-data /home/www-data /var/www/html
+    chown www-data:www-data /home/www-data
 
 # Switch to user
 USER www-data
