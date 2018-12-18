@@ -66,6 +66,7 @@ There is a list of all the repositories maintained by monorepo, changes in log b
     - new macro `loadMoreButton` is integrated into `@ShopsysShop/Front/Inline/Paginator/paginator.html.twig`, update files based on commit from [`ajaxMoreLoader is updated and generalized`](https://github.com/shopsys/shopsys/pull/579/files)
 - *(optional)* [#645 SVG icons in generated document](https://github.com/shopsys/shopsys/pull/645)
     - to display svg icons collection correctly in grunt generated document for all browsers please add `src/Shopsys/ShopBundle/Resources/views/Grunt/htmlDocumentTemplate.html` file and update `src/Shopsys/ShopBundle/Resources/views/Grunt/gruntfile.js.twig` based on changes in this pull request
+- *(optional)* drop `--verbose` from all easy-coding-standard phing targets (look for `${path.ecs.executable}`) as the package was upgraded in [#623](https://github.com/shopsys/shopsys/pull/623/) and now outputs name of each file checked in the verbose mode
 
 ### [shopsys/shopsys]
 - [#651 It's possible to add index prefix to elastic search](https://github.com/shopsys/shopsys/pull/651)
