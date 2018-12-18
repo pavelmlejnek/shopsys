@@ -63,7 +63,8 @@ COPY ${project_root}/docker/php-fpm/php-ini-overrides.ini /usr/local/etc/php/php
 # set www-data user his home directory
 # the user "www-data" is used when running the image, and therefore should own the workdir
 RUN usermod -m -d /home/www-data www-data && \
-    chown www-data:www-data /home/www-data
+    mkdir -p /var/www/html && \
+    chown -R www-data:www-data /home/www-data /var/www/html
 
 # Switch to user
 USER www-data
