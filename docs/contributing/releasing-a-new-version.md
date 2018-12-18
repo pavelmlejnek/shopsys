@@ -4,30 +4,31 @@ For releasing a new version, we are leveraging `release` command from [symplify/
 
 All the source codes and configuration of our release process can be found in `utils/releaser` folder that is located in the root of the monorepo.
 
-Each step of the release process is defined as an implementation of  `Symplify\MonorepoBuilder\Release\Contract\ReleaseWorker\ReleaseWorkerInterface`.
+Each step of the release process is defined as an implementation of `Symplify\MonorepoBuilder\Release\Contract\ReleaseWorker\ReleaseWorkerInterface`,
+therefore we refer to the step definitions as to "release workers".
 
 ## Stages
 
 The whole release process is divided into 3 stages that are run separately:
 
 1. `release-candidate`
-    - the workers are defined in `src/ReleaseWorker/ReleaseCandidate` folder
-    - include steps that are done before the release candidate branch is sent to code review and testing
+    - steps that are done before the release candidate branch is sent to code review and testing
+    - the release workers are defined in `src/ReleaseWorker/ReleaseCandidate` folder
 1. `release`
-    - the workers are defined in `src/ReleaseWorker/Release` folder
-    - include steps that are done during the actual release
+    - steps that are done during the actual release
+    - the release workers are defined in `src/ReleaseWorker/Release` folder
 1. `after-release`
-    - the workers are defined in `src/ReleaseWorker/AfterRelease` folder
-    - include steps that are done after the release
+    - steps that are done after the release
+    - the release workers are defined in `src/ReleaseWorker/AfterRelease` folder
 
 
 ## Release command
 
-To perform all the steps of the desired stage, run the following command and follow instructions.
+To perform a desired stage, run the following command and follow instructions that you'll be asked in console.
 ```
 vendor/bin/monorepo-builder release <release-number> --stage <stage> -v
 ```
-If you want only to display all the steps of a particular stage, along with the release worker class names, add the `--dry-run` argument:
+If you want only to display a particular stage, along with the release worker class names, add the `--dry-run` argument:
 ```
 vendor/bin/monorepo-builder release <release-number> --dry-run --stage <stage> -v
 ```
